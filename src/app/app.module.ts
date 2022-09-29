@@ -11,9 +11,9 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
 
 import { AssignmentsComponent } from './assignments/assignments.component';
+import { AssignmentDetailComponent} from "./assignments/assignment-detail/assignment-detail.component";
 import { RenduDirective } from './shared/rendu.directive';
 import { FormsModule} from "@angular/forms";
-import { AssignmentDetailComponent } from './assignment-detail/assignment-detail.component';
 import { MatListModule } from "@angular/material/list";
 
 // @ts-ignore

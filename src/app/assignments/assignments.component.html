@@ -21,15 +21,20 @@
     Ajouter un devoir
   </button>
 </form>
-<mat-list *ngFor="let assignment of assignments">
-  <h3 mat-subheader>{{assignments.dateDeRendu}}</h3>
+<mat-list *ngFor="let assignment of assignments" [ngClass]="{
+       'rendu':assignment.rendu,
+       'nonrendu':'2px solid blue'
+      }">
+  <h3 mat-subheader>{{assignment.dateDeRendu}}</h3>
+  <mat-list-item>
+    <p appRendu *ngIf="assignment.rendu; else nonsoumis">
+      Devoir intitulé {{assignment.nom}}, a été rendu.
+    </p>
+    <ng-template #nonsoumis>
+      <p>Le devoir {{assignment.nom}} n'a pas été rendu !</p>
+    </ng-template>
+    <mat-divider></mat-divider>
+  </mat-list-item>
 </mat-list>
-<p appRendu *ngIf="assignment.rendu; else nonsoumis">
-    Devoir intitulé {{assignment.nom}}, rendu le
-    {{assignment.dateDeRendu}}.
-  </p>
-  <ng-template #nonsoumis>
-    Le devoir {{assignment.nom}} n'a pas été rendu.
-  </ng-template>
-</div>
+
 <app-assignment-detail></app-assignment-detail>
