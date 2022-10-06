@@ -9,13 +9,13 @@ import { Assignment } from "./assignment.model";
 export class AssignmentsComponent implements OnInit {
   titre = "Mon application sur les Assignments !";
   ajoutActive = false;
-  nomDevoir:string = "";
-  dateDeRendu: any;
-  assignments:({ rendu: boolean; dateDeRendu: Date; nom: string } | { rendu: boolean; dateDeRendu: Date; nom: string })[] = [
+  assignmentSelectionne: Assignment;
+  formVisible = false;
+  assignments: Assignment[] = [
     {
       nom : "Devoir Angular à rendre",
       dateDeRendu : new Date('2020-10-10'),
-      rendu : false
+      rendu : true
     },
     {
       nom : "Devoir JAVA à rendre",
@@ -31,16 +31,25 @@ export class AssignmentsComponent implements OnInit {
       this.ajoutActive = true;
     }, 2000);
   }
-
-  onSubmit() {
-    const newAssignement = new Assignment();
-    newAssignement.nom = this.nomDevoir;
-    newAssignement.dateDeRendu = this.dateDeRendu;
-    newAssignement.rendu = false;
-
-    this.assignments.push(newAssignement);
+  assignmentClique(assignment: Assignment) {
+    this.assignmentSelectionne = assignment;
   }
-
-
-
+  onAddAssignmentbtnClick(){
+    this.formVisible = true;
+  }
+  onNouvelAssignment(event:Assignment){
+    this.assignments.push(event);
+    this.formVisible = false;
 }
+
+  supprimeAssignment($event: Assignment) {
+    this.assignments.find((assignment, index) => {
+      if (assignment === $event) {
+        this.assignments.splice(index, 1);
+      }
+    });
+  }
+}
+
+
+
