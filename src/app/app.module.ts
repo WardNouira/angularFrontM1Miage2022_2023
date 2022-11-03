@@ -11,22 +11,32 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatCardModule} from "@angular/material/card";
 import {MatNativeDateModule} from "@angular/material/core";
 import {MatCheckboxModule} from "@angular/material/checkbox";
-
+import {RouterModule, Routes} from "@angular/router";
 import { AssignmentsComponent } from './assignments/assignments.component';
 import { AssignmentDetailComponent} from "./assignments/assignment-detail/assignment-detail.component";
 import { RenduDirective } from './shared/rendu.directive';
 import { FormsModule} from "@angular/forms";
 import { MatListModule } from "@angular/material/list";
 import { AddAssignmentComponent } from './assignments/add-assignment/add-assignment.component';
+import { EditAssignmentComponent } from './assignments/edit-assignment/edit-assignment.component';
 
 // @ts-ignore
+
+const routes: Routes = [
+  {path: '', component: AssignmentsComponent},
+  {path: 'home', component: AssignmentsComponent},
+  {path: 'add', component: AddAssignmentComponent},
+  {path: 'assignment/:id', component: AssignmentDetailComponent},
+  {path: 'assignment/:id/edit', component: EditAssignmentComponent},
+];
 @NgModule({
   declarations: [
     AppComponent,
     AssignmentsComponent,
     RenduDirective,
     AssignmentDetailComponent,
-    AddAssignmentComponent
+    AddAssignmentComponent,
+    EditAssignmentComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +53,8 @@ import { AddAssignmentComponent } from './assignments/add-assignment/add-assignm
     MatNativeDateModule,
     MatListModule,
     MatCardModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Assignment } from "./assignment.model";
+import {AssignmentsService} from "../shared/assignments.service";
+import {Observable, of} from "rxjs";
 
 @Component({
   selector: 'app-assignments',
@@ -11,25 +13,15 @@ export class AssignmentsComponent implements OnInit {
   ajoutActive = false;
   assignmentSelectionne: Assignment;
   formVisible = false;
-  assignments: Assignment[] = [
-    {
-      nom : "Devoir Angular à rendre",
-      dateDeRendu : new Date('2020-10-10'),
-      rendu : true
-    },
-    {
-      nom : "Devoir JAVA à rendre",
-      dateDeRendu : new Date('2020-09-10'),
-      rendu : false
-    },
-  ];
+  assignments: Assignment[];
 
-  constructor() { }
+  constructor(private assignmentService:AssignmentsService) { }
 
   ngOnInit(): void {
     setTimeout(() => {
       this.ajoutActive = true;
     }, 2000);
+    this.getAssignments();
   }
   assignmentClique(assignment: Assignment) {
     this.assignmentSelectionne = assignment;
@@ -37,19 +29,24 @@ export class AssignmentsComponent implements OnInit {
   onAddAssignmentbtnClick(){
     this.formVisible = true;
   }
-  onNouvelAssignment(event:Assignment){
-    this.assignments.push(event);
-    this.formVisible = false;
-}
 
-  supprimeAssignment($event: Assignment) {
-    this.assignments.find((assignment, index) => {
-      if (assignment === $event) {
-        this.assignments.splice(index, 1);
-      }
-    });
+
+  /* supprimeAssignment($event: Assignment) {
+    *this.assignments.find((assignment, index) => {
+       if (assignment === $event) {
+         this.assignments.splice(index, 1);
+       }
+     });
+   }*/
+  getAssignments(){
+    this.assignmentService.getAssignments()
+      .subscribe(assignments => this.assignments = assignments);
+  }
+  onNouvelAssignment(event:Assignment){
+    this.assignmentService.addAssignment(event)
+      .subscribe(message => console.log(message));
+    this.formVisible = false;
   }
 }
-
 
 
