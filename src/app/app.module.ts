@@ -19,6 +19,8 @@ import { FormsModule} from "@angular/forms";
 import { MatListModule } from "@angular/material/list";
 import { AddAssignmentComponent } from './assignments/add-assignment/add-assignment.component';
 import { EditAssignmentComponent } from './assignments/edit-assignment/edit-assignment.component';
+import { AuthGuard } from './shared/auth.guard';
+import {MatSlideToggle, MatSlideToggleModule} from "@angular/material/slide-toggle";
 
 // @ts-ignore
 
@@ -27,7 +29,7 @@ const routes: Routes = [
   {path: 'home', component: AssignmentsComponent},
   {path: 'add', component: AddAssignmentComponent},
   {path: 'assignment/:id', component: AssignmentDetailComponent},
-  {path: 'assignment/:id/edit', component: EditAssignmentComponent},
+  {path: 'assignment/:id/edit', component: EditAssignmentComponent, canActivate: [AuthGuard]},
 ];
 @NgModule({
   declarations: [
@@ -54,7 +56,8 @@ const routes: Routes = [
     MatListModule,
     MatCardModule,
     MatCheckboxModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    MatSlideToggleModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
