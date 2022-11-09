@@ -21,6 +21,7 @@ import { AddAssignmentComponent } from './assignments/add-assignment/add-assignm
 import { EditAssignmentComponent } from './assignments/edit-assignment/edit-assignment.component';
 import { AuthGuard } from './shared/auth.guard';
 import {MatSlideToggle, MatSlideToggleModule} from "@angular/material/slide-toggle";
+import {HttpClientModule} from "@angular/common/http";
 
 // @ts-ignore
 
@@ -58,6 +59,7 @@ const routes: Routes = [
     MatCheckboxModule,
     RouterModule.forRoot(routes),
     MatSlideToggleModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
