@@ -60,6 +60,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     MatSlideToggleModule,
     FormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

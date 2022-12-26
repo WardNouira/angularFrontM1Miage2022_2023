@@ -20,6 +20,7 @@ export class AddAssignmentComponent implements OnInit {
     debugger;
     const newAssignement = new Assignment();
     //const assigments = new AssignmentModel();
+    newAssignement.id = Math.floor(Math.random() * 1000);
     newAssignement.nom = this.nomDevoir;
     newAssignement.dateDeRendu = this.dateDeRendu;
     newAssignement.rendu = false;

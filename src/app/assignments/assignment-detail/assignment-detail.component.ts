@@ -20,15 +20,21 @@ export class AssignmentDetailComponent implements OnInit {
   deleteButton() {
     //this.supprimeAssignment.emit(this.assignmentTransmis);
     //this.assignmentTransmis = null;
-    this.assignmentService.deleteAssignment(this.assignmentTransmis).subscribe(message => console.log(message));
-    this.assignmentTransmis = null;
-    this.router.navigate(['/home']);
+    this.assignmentService.deleteAssignment(this.assignmentTransmis).subscribe((message) => {
+      console.log(message)
+      this.assignmentTransmis = null;
+      this.router.navigate(['/home']);
+    });
+
   }
 
   onAssignmentRendu() {
     this.assignmentTransmis.rendu = true;
-    this.assignmentService.updateAssignment(this.assignmentTransmis).subscribe(message => console.log(message));
-    this.router.navigate(['/home']);
+    this.assignmentService.updateAssignment(this.assignmentTransmis).subscribe(message => {
+      console.log(message)
+      this.router.navigate(['/home']);
+    });
+
   }
   getAssignment(){
     const id = +this.route.snapshot.params['id'];

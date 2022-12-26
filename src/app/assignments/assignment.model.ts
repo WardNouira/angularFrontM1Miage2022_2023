@@ -3,4 +3,5 @@ export class Assignment {
   dateDeRendu!:Date;
   rendu!:boolean;
   id!: number;
+  _id?: string;
 }
