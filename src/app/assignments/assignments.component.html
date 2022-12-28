@@ -5,6 +5,14 @@
       <button mat-flat-button color="accent" (click) = "onAddAssignmentbtnClick()" class="ajouterBtn "> Ajouter Assignment</button>
     </a>
   </div>
+  <p>Nombre total d'assignments : {{totalDocs}}</p>
+  <p>Nombre total de pages : {{totalPages}}</p>
+  <div class="pagination">
+    <button mat-raised-button color="primary" (click)="premierePage()">Première</button>
+    <button mat-raised-button color="accent" (click)="pagePrecedente()">Précédente</button>
+    <button mat-raised-button color="accent" (click)="pageSuivante()">Suivante</button>
+    <button mat-raised-button color="primary" (click)="dernierePage()">Dernière</button>
+  </div>
 
   <mat-list *ngFor="let assignment of assignments" [ngClass]="{
        'rendu':assignment.rendu,

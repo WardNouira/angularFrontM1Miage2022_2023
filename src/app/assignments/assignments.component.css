@@ -14,3 +14,6 @@
   align-self: flex-end;
   margin: 1%;
 }
+.pagination{
+  align-self: flex-start;
+}

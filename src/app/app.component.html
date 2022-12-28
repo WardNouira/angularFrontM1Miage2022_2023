@@ -1,9 +1,10 @@
 <div class="container">
+  <app-toolbar-connexion></app-toolbar-connexion>
   <h1>
     <nav><a routerLink="/home">{{title}}</a></nav>
   </h1>
   <mat-slide-toggle color="primary" (click)="login()"></mat-slide-toggle>
-  <button (click)="initialiserBDAvecDonneesDeTest()">peupler BD</button>
+  <button (click)="peuplerBD()">peupler BD</button>
 </div>
 
 

@@ -15,13 +15,15 @@ import {RouterModule, Routes} from "@angular/router";
 import { AssignmentsComponent } from './assignments/assignments.component';
 import { AssignmentDetailComponent} from "./assignments/assignment-detail/assignment-detail.component";
 import { RenduDirective } from './shared/rendu.directive';
-import { FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { MatListModule } from "@angular/material/list";
 import { AddAssignmentComponent } from './assignments/add-assignment/add-assignment.component';
 import { EditAssignmentComponent } from './assignments/edit-assignment/edit-assignment.component';
 import { AuthGuard } from './shared/auth.guard';
 import {MatSlideToggle, MatSlideToggleModule} from "@angular/material/slide-toggle";
 import {HttpClientModule} from "@angular/common/http";
+import { ToolbarConnexionComponent } from './toolbar-connexion/toolbar-connexion.component';
+import {MatToolbarModule} from "@angular/material/toolbar";
 
 // @ts-ignore
 
@@ -39,7 +41,8 @@ const routes: Routes = [
     RenduDirective,
     AssignmentDetailComponent,
     AddAssignmentComponent,
-    EditAssignmentComponent
+    EditAssignmentComponent,
+    ToolbarConnexionComponent
   ],
   imports: [
     BrowserModule,
@@ -61,6 +64,8 @@ const routes: Routes = [
     MatSlideToggleModule,
     FormsModule,
     HttpClientModule,
+    MatToolbarModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -14,10 +14,20 @@ export class AssignmentsComponent implements OnInit {
   assignmentSelectionne: Assignment;
   formVisible = false;
   assignments: Assignment[];
+  page: number=1;
+  limit: number=10;
+  totalDocs: number = 0;
+  totalPages: number = 0;
+  hasPrevPage: boolean = false;
+  prevPage: number = 0;
+  hasNextPage: boolean = false;
+  nextPage: number = 0;
+
 
   constructor(private assignmentService:AssignmentsService) { }
 
   ngOnInit(): void {
+
     setTimeout(() => {
       this.ajoutActive = true;
     }, 2000);
@@ -39,13 +49,46 @@ export class AssignmentsComponent implements OnInit {
      });
    }*/
   getAssignments(){
-    this.assignmentService.getAssignments()
-      .subscribe(assignments => this.assignments = assignments);
-  }
+    this.assignmentService.getAssignmentsPagine(this.page, this.limit)
+      .subscribe(data => {
+        this.assignments = data.docs;
+        this.page = data.page;
+        this.limit = data.limit;
+        this.totalDocs = data.totalDocs;
+        this.totalPages = data.totalPages;
+        this.hasPrevPage = data.hasPrevPage;
+        this.prevPage = data.prevPage;
+        this.hasNextPage = data.hasNextPage;
+        this.nextPage = data.nextPage;
+        console.log("données reçues");
+        console.log(data);
+      });
+}
   onNouvelAssignment(event:Assignment){
     this.assignmentService.addAssignment(event)
       .subscribe(message => console.log(message));
     this.formVisible = false;
+  }
+
+  pageSuivante(){
+    if(this.hasNextPage){
+      this.page = this.nextPage;
+      this.getAssignments();
+    }
+  }
+  pagePrecedente(){
+    if(this.hasPrevPage){
+      this.page = this.prevPage;
+      this.getAssignments();
+    }
+  }
+  premierePage(){
+    this.page = 1;
+    this.getAssignments();
+  }
+  dernierePage(){
+    this.page = this.totalPages;
+    this.getAssignments();
   }
 }
 

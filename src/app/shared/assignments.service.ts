@@ -32,6 +32,9 @@ export class AssignmentsService {
     //return of(this.assignments);
     return this.http.get<Assignment[]>(this.url);
   }
+  getAssignmentsPagine(page:number, limit:number): Observable<any> {
+    return this.http.get<Assignment[]>(this.url + "?page=" + page + "&limit=" + limit);
+  }
   addAssignment(assignment:Assignment): Observable<any>{
     //this.assignments.push(assignment);
     //this.loggingService.log(assignment.nom,"ajouté");
