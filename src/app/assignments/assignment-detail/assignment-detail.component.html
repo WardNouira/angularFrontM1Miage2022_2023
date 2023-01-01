@@ -1,10 +1,27 @@
 <div class="container">
   <mat-card *ngIf="assignmentTransmis">
-    <mat-card-title>{{assignmentTransmis.nom}}</mat-card-title>
-    <mat-card-content>{{assignmentTransmis.dateDeRendu | date}}</mat-card-content>
-    <mat-checkbox *ngIf="!assignmentTransmis.rendu" (click)="onAssignmentRendu()">Devoir rendu</mat-checkbox>
-    <button mat-stroked-button color="primary" (click)="onClickEdit()" [disabled]="!isAdmin()">Edit</button>
-    <button mat-flat-button color="accent" (click) = "deleteButton()"> Effacer </button>
+    <div class="card-header">
+      <mat-card-title-group>
+        <mat-card-title>{{assignmentTransmis.nom}}</mat-card-title>
+        <mat-card-subtitle>{{assignmentTransmis.matiere}}, {{assignmentTransmis.professeur}}</mat-card-subtitle>
+      </mat-card-title-group>
+      <img mat-card-sm-image [src]="assignmentTransmis.avatar" class="imageAvatar">
+    </div>
+
+
+    <mat-card-content>
+      <p *ngIf="assignmentTransmis.rendu">Travail rendu le {{assignmentTransmis.dateDeRendu | date}}
+        par l'élève  {{assignmentTransmis.eleve}}
+      </p>
+      <p *ngIf="!assignmentTransmis.rendu">Travail non rendu, {{assignmentTransmis.eleve}} ne l'a pas encore envoyé</p>
+    </mat-card-content>
+    <mat-card-actions class="card-action">
+      <div class="renduDiv">
+        <mat-checkbox *ngIf="!assignmentTransmis.rendu" (click)="onAssignmentRendu()">Devoir rendu</mat-checkbox>
+        <button mat-button (click)="onClickEdit()" [disabled]="!isLogged()">Edit</button>
+      </div>
+      <button mat-button (click)="deleteButton()" [disabled]="!isAdmin()"> Effacer</button>
+    </mat-card-actions>
   </mat-card>
 
 
