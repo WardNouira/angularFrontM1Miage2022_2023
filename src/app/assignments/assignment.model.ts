@@ -4,4 +4,8 @@ export class Assignment {
   rendu!:boolean;
   id!: number;
   _id?: string;
+  professeur!: string;
+  matiere!: string;
+  eleve!: string;
+  avatar!: string;
 }

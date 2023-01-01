@@ -12,20 +12,7 @@ export class AssignmentsService {
   private HttpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
   }
-  assignments: Assignment[] = [
-    {
-      id: 1,
-      nom : "Devoir Angular à rendre",
-      dateDeRendu : new Date('2020-10-10'),
-      rendu : true
-    },
-    {
-      id: 2,
-      nom : "Devoir JAVA à rendre",
-      dateDeRendu : new Date('2020-09-10'),
-      rendu : false
-    },
-  ];
+
   constructor(private loggingService:LoggingService, private http:HttpClient) { }
   url = "http://localhost:8010/api/assignments";
   getAssignments(): Observable<Assignment[]>{
@@ -58,10 +45,10 @@ export class AssignmentsService {
     //return of(a);
     return this.http.get<Assignment>(this.url + "/" + id)
       .pipe(
-        map(a=> {
-          a.nom += "reçu et transformé avec un pipe";
-          return a;
-        }),
+        // map(a=> {
+        //   a.nom += "reçu et transformé avec un pipe";
+        //   return a;
+        // }),
         tap(_=>{
           console.log("tap: assignment avec id ="+id+" requête GET envoyée sur MongoDB cloud")
         }),
@@ -88,6 +75,34 @@ export class AssignmentsService {
       nouvelAssignment.nom = a.nom;
       nouvelAssignment.dateDeRendu = new Date(a.dateDeRendu);
       nouvelAssignment.rendu = a.rendu;
+      nouvelAssignment.eleve = a.eleve;
+      nouvelAssignment.matiere = a.matiere;
+      switch (a.matiere) {
+        case "Base de données":
+          nouvelAssignment.professeur = "M. Mopolo";
+          nouvelAssignment.avatar = "../assets/avatars/okComputer.jpg";
+          break;
+        case "Marketing":
+          nouvelAssignment.professeur = "M. Tounsi";
+          nouvelAssignment.avatar = "../assets/avatars/abbeyRoad.jpg";
+          break;
+        case "Comptabilité":
+          nouvelAssignment.professeur = "M. Anigo";
+          nouvelAssignment.avatar = "../assets/avatars/californication.jpg";
+          break;
+        case "Développement WEB":
+          nouvelAssignment.professeur = "M. Buffa";
+          nouvelAssignment.avatar = "../assets/avatars/opera.jpg";
+          break;
+        case "Programmation Avancée":
+          nouvelAssignment.professeur = "M. Lahire";
+          nouvelAssignment.avatar = "../assets/avatars/stadiumArcadium.jpg";
+          break;
+          case "Musique":
+          nouvelAssignment.professeur = "M. Buffa";
+          nouvelAssignment.avatar = "../assets/avatars/supermassive.jpg";
+          break;
+      }
 
       appelsVersAddAssignment.push(this.addAssignment(nouvelAssignment));
     });

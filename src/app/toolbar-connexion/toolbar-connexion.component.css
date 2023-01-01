@@ -1,0 +1,24 @@
+.containerLogIn{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 10px;
+  font-size: 80%;
+  padding: 2%;
+}
+.toolbar{
+  display: flex;
+  justify-content: space-between;
+}
+.loginInputs{
+  margin-top: 20px;
+  margin-right: 2%;
+}
+.loginButton{
+  display: flex;
+  justify-content: space-between;
+  margin-left: 2%;
+}
+.loginButton button{
+  margin-left: 2%;
+}

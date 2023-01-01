@@ -1,13 +1,15 @@
 <div class="container">
   <app-toolbar-connexion></app-toolbar-connexion>
-  <h1>
-    <nav><a routerLink="/home">{{title}}</a></nav>
-  </h1>
-  <mat-slide-toggle color="primary" (click)="login()"></mat-slide-toggle>
-  <button (click)="peuplerBD()">peupler BD</button>
+  <div class="home-icon">
+    <nav><a routerLink="/home">
+      <button mat-fab color="primary" aria-label="Example icon button with a home icon">
+        <mat-icon>home</mat-icon>
+      </button>
+    </a></nav>
+  </div>
+<!--  <mat-slide-toggle color="primary" (click)="login()"></mat-slide-toggle>-->
+<!--  <button (click)="peuplerBD()">peupler BD</button>-->
 </div>
 
 
-
-
-<router-outlet ></router-outlet>
+<router-outlet></router-outlet>

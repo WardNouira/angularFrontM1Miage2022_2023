@@ -1,7 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { Assignment } from "./assignment.model";
 import {AssignmentsService} from "../shared/assignments.service";
 import {Observable, of} from "rxjs";
+import {Router} from "@angular/router";
+import {MatSort,Sort} from "@angular/material/sort";
+import {MatTableDataSource} from "@angular/material/table";
+import {MatPaginator, PageEvent} from "@angular/material/paginator";
+import {AuthService} from "../shared/auth.service";
 
 @Component({
   selector: 'app-assignments',
@@ -22,9 +27,13 @@ export class AssignmentsComponent implements OnInit {
   prevPage: number = 0;
   hasNextPage: boolean = false;
   nextPage: number = 0;
+  displayedColumns: string[] = ['numero','nom', 'dateDeRendu', 'rendu', 'actions'];
+  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  tabAssignments: any;
 
 
-  constructor(private assignmentService:AssignmentsService) { }
+  constructor(private assignmentService:AssignmentsService, private authService:AuthService, private router: Router) { }
 
   ngOnInit(): void {
 
@@ -35,6 +44,7 @@ export class AssignmentsComponent implements OnInit {
   }
   assignmentClique(assignment: Assignment) {
     this.assignmentSelectionne = assignment;
+    this.router.navigate(['/assignment/', assignment.id]);
   }
   onAddAssignmentbtnClick(){
     this.formVisible = true;
@@ -62,6 +72,9 @@ export class AssignmentsComponent implements OnInit {
         this.nextPage = data.nextPage;
         console.log("données reçues");
         console.log(data);
+        this.tabAssignments = new MatTableDataSource(this.assignments);
+        this.tabAssignments.sort = this.sort;
+        this.tabAssignments.paginator = this.paginator;
       });
 }
   onNouvelAssignment(event:Assignment){
@@ -70,25 +83,59 @@ export class AssignmentsComponent implements OnInit {
     this.formVisible = false;
   }
 
-  pageSuivante(){
-    if(this.hasNextPage){
-      this.page = this.nextPage;
-      this.getAssignments();
-    }
+  // pageSuivante(){
+  //   if(this.hasNextPage){
+  //     this.page = this.nextPage;
+  //     this.getAssignments();
+  //   }
+  // }
+  // pagePrecedente(){
+  //   if(this.hasPrevPage){
+  //     this.page = this.prevPage;
+  //     this.getAssignments();
+  //   }
+  // }
+  // premierePage(){
+  //   this.page = 1;
+  //   this.getAssignments();
+  // }
+  // dernierePage(){
+  //   this.page = this.totalPages;
+  //   this.getAssignments();
+  // }
+
+  testChangement(sortState: Sort) {
+    console.log("testChangement");
+    console.log(sortState);
   }
-  pagePrecedente(){
-    if(this.hasPrevPage){
-      this.page = this.prevPage;
-      this.getAssignments();
-    }
+
+  changementPage($event: PageEvent) {
+    console.log("changementPage");
+    console.log($event);
+    this.page = $event.pageIndex + 1;
+    this.limit = $event.pageSize;
+    this.replaceData();
   }
-  premierePage(){
-    this.page = 1;
-    this.getAssignments();
+  replaceData() {
+    this.assignmentService.getAssignmentsPagine(this.page, this.limit)
+      .subscribe(data => {
+        this.assignments = data.docs;
+        this.page = data.page;
+        this.limit = data.limit;
+        this.totalDocs = data.totalDocs;
+        this.totalPages = data.totalPages;
+        this.hasPrevPage = data.hasPrevPage;
+        this.prevPage = data.prevPage;
+        this.hasNextPage = data.hasNextPage;
+        this.nextPage = data.nextPage;
+        console.log("données reçues");
+        console.log(data);
+        this.tabAssignments = new MatTableDataSource(this.assignments);
+        this.tabAssignments.sort = this.sort;
+      });
   }
-  dernierePage(){
-    this.page = this.totalPages;
-    this.getAssignments();
+  isLogged(){
+    return this.authService.loggedIn;
   }
 }
 

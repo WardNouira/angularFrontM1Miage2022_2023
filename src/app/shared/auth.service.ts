@@ -10,6 +10,7 @@ export class AuthService {
   urlConnexion = "http://localhost:8010/api/connexion";
   urlInscription = "http://localhost:8010/api/inscription";
   loggedIn = false;
+  isUserAdmin = false;
 
   // logIn(){
   //   this.loggedIn = true;
@@ -17,21 +18,21 @@ export class AuthService {
   logIn(pseudo:any, motDePasse:any): Observable<any>{
     return this.http.post(this.urlConnexion, {pseudo: pseudo, motDePasse: motDePasse});
   }
-  signUp(pseudo:any, motDePasse:any): Observable<any>{
-    console.log("pseudo: " + pseudo + " motDePasse: " + motDePasse);
-    return this.http.post(this.urlInscription, {pseudo: pseudo, motDePasse: motDePasse});
+  signUp(pseudo:any, motDePasse:any, isAdmin:any): Observable<any>{
+    console.log("pseudo: " + pseudo + " motDePasse: " + motDePasse + " isAdmin: " + isAdmin);
+    return this.http.post(this.urlInscription, {pseudo: pseudo, motDePasse: motDePasse, isAdmin: isAdmin});
   }
 
   logOut(){
     this.loggedIn = false;
   }
-
-  isAdmin(){
-    const isUserAdmin = new Promise(
-      (resolve, reject) => {
-        resolve(this.loggedIn)
-      }
-    )
-    return isUserAdmin;
-  }
+  //
+  // isAdmin(){
+  //   const isUserAdmin = new Promise(
+  //     (resolve, reject) => {
+  //       resolve(this.loggedIn)
+  //     }
+  //   )
+  //   return isUserAdmin;
+  // }
 }

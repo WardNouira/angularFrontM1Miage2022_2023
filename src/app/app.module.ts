@@ -24,6 +24,10 @@ import {MatSlideToggle, MatSlideToggleModule} from "@angular/material/slide-togg
 import {HttpClientModule} from "@angular/common/http";
 import { ToolbarConnexionComponent } from './toolbar-connexion/toolbar-connexion.component';
 import {MatToolbarModule} from "@angular/material/toolbar";
+import {MatTableModule} from "@angular/material/table";
+import {MatSortModule} from "@angular/material/sort";
+import {MatPaginatorModule} from "@angular/material/paginator";
+import { YesNoPipe } from './yes-no.pipe';
 
 // @ts-ignore
 
@@ -42,7 +46,8 @@ const routes: Routes = [
     AssignmentDetailComponent,
     AddAssignmentComponent,
     EditAssignmentComponent,
-    ToolbarConnexionComponent
+    ToolbarConnexionComponent,
+    YesNoPipe
   ],
   imports: [
     BrowserModule,
@@ -66,6 +71,9 @@ const routes: Routes = [
     HttpClientModule,
     MatToolbarModule,
     ReactiveFormsModule,
+    MatTableModule,
+    MatSortModule,
+    MatPaginatorModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

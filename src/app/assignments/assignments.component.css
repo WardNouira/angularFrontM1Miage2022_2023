@@ -9,11 +9,12 @@
 .container{
   display: flex;
   flex-direction: column;
+  margin-right: 1%;
+  margin-left: 1%;
 }
 .ajouterBtn{
   align-self: flex-end;
   margin: 1%;
 }
-.pagination{
-  align-self: flex-start;
-}
+
+

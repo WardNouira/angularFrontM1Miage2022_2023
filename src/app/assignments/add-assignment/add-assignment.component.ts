@@ -17,7 +17,6 @@ export class AddAssignmentComponent implements OnInit {
   ngOnInit(): void {
   }
   onSubmit() {
-    debugger;
     const newAssignement = new Assignment();
     //const assigments = new AssignmentModel();
     newAssignement.id = Math.floor(Math.random() * 1000);
