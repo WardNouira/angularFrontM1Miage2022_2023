@@ -10,7 +10,7 @@
 
 
     <mat-card-content>
-      <p *ngIf="assignmentTransmis.rendu">Travail rendu le {{assignmentTransmis.dateDeRendu | date}}
+      <p *ngIf="assignmentTransmis.rendu">Travail à rendre le {{assignmentTransmis.dateDeRendu | date}}
         par l'élève  {{assignmentTransmis.eleve}}
       </p>
       <p *ngIf="!assignmentTransmis.rendu">Travail non rendu, {{assignmentTransmis.eleve}} ne l'a pas encore envoyé</p>

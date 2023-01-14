@@ -14,7 +14,8 @@ export class AssignmentsService {
   }
 
   constructor(private loggingService:LoggingService, private http:HttpClient) { }
-  url = "http://localhost:8010/api/assignments";
+  //url = "http://localhost:8010/api/assignments";
+  url = "https://api-projet-m-buffa-malattia-nouira.onrender.com/api/assignments"
   nbAssignment : number;
   getAssignments(): Observable<Assignment[]>{
     //return of(this.assignments);

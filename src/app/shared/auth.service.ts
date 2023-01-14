@@ -7,8 +7,10 @@ import {Observable, tap} from "rxjs";
 })
 export class AuthService {
   constructor(private http:HttpClient) { }
-  urlConnexion = "http://localhost:8010/api/connexion";
-  urlInscription = "http://localhost:8010/api/inscription";
+  //urlConnexion = "http://localhost:8010/api/connexion";
+  urlConnexion = "https://api-projet-m-buffa-malattia-nouira.onrender.com/api/connexion"
+  //urlInscription = "http://localhost:8010/api/inscription";
+  urlInscription = "https://api-projet-m-buffa-malattia-nouira.onrender.com/api/inscription"
   loggedIn = false;
   isUserAdmin = false;
   username: string;
