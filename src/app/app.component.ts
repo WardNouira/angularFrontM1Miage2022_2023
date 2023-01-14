@@ -23,10 +23,6 @@ export class AppComponent {
     //   this.router.navigate(['/home']);
     // }
   }
-
-  initialiserBDAvecDonneesDeTest() {
-    this.assignmentsService.peuplerBDAvecForkJoin()
-  }
   peuplerBD() {
     // version naive et simple
     //this.assignmentsService.peuplerBD();

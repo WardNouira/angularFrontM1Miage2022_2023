@@ -28,6 +28,9 @@ import {MatTableModule} from "@angular/material/table";
 import {MatSortModule} from "@angular/material/sort";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import { YesNoPipe } from './yes-no.pipe';
+import {MatSelectModule} from "@angular/material/select";
+import { NotePipe } from './note.pipe';
+import {AuthInterceptorInterceptor} from "./shared/auth-interceptor.interceptor";
 
 // @ts-ignore
 
@@ -47,35 +50,37 @@ const routes: Routes = [
     AddAssignmentComponent,
     EditAssignmentComponent,
     ToolbarConnexionComponent,
-    YesNoPipe
+    YesNoPipe,
+    NotePipe
   ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    MatIconModule,
-    MatDividerModule,
-    MatButtonModule,
-    MatIconModule,
-    MatDividerModule,
-    MatInputModule,
-    FormsModule,
-    MatFormFieldModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatListModule,
-    MatCardModule,
-    MatCheckboxModule,
-    RouterModule.forRoot(routes),
-    MatSlideToggleModule,
-    FormsModule,
-    HttpClientModule,
-    MatToolbarModule,
-    ReactiveFormsModule,
-    MatTableModule,
-    MatSortModule,
-    MatPaginatorModule,
-  ],
-  providers: [],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        MatIconModule,
+        MatDividerModule,
+        MatButtonModule,
+        MatIconModule,
+        MatDividerModule,
+        MatInputModule,
+        FormsModule,
+        MatFormFieldModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatListModule,
+        MatCardModule,
+        MatCheckboxModule,
+        RouterModule.forRoot(routes),
+        MatSlideToggleModule,
+        FormsModule,
+        HttpClientModule,
+        MatToolbarModule,
+        ReactiveFormsModule,
+        MatTableModule,
+        MatSortModule,
+        MatPaginatorModule,
+        MatSelectModule,
+    ],
+  providers: [AuthInterceptorInterceptor],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

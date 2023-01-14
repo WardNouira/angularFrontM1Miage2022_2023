@@ -14,6 +14,8 @@ export class ToolbarConnexionComponent implements OnInit {
   });
   hide = true;
   isAdmin = false;
+  isLoggedIn = false;
+  username = '';
   constructor(private fb: FormBuilder, private authService:AuthService) { }
 
   ngOnInit(): void {
@@ -37,6 +39,10 @@ export class ToolbarConnexionComponent implements OnInit {
         console.log(data);
         this.authService.loggedIn = true;
         this.authService.isUserAdmin = data.isAdmin;
+        this.authService.username = data.pseudo;
+        this.isLoggedIn = this.authService.loggedIn;
+        this.isAdmin = this.authService.isUserAdmin;
+        this.username = this.authService.username;
       })
   }
 

@@ -15,6 +15,7 @@ export class AssignmentsService {
 
   constructor(private loggingService:LoggingService, private http:HttpClient) { }
   url = "http://localhost:8010/api/assignments";
+  nbAssignment : number;
   getAssignments(): Observable<Assignment[]>{
     //return of(this.assignments);
     return this.http.get<Assignment[]>(this.url);
@@ -23,9 +24,7 @@ export class AssignmentsService {
     return this.http.get<Assignment[]>(this.url + "?page=" + page + "&limit=" + limit);
   }
   addAssignment(assignment:Assignment): Observable<any>{
-    //this.assignments.push(assignment);
-    //this.loggingService.log(assignment.nom,"ajouté");
-   //return of('Assignment ajouté');
+    this.setDetails(assignment, assignment.matiere);
     return this.http.post<Assignment>(this.url,assignment,this.HttpOptions);
   }
 
@@ -77,36 +76,43 @@ export class AssignmentsService {
       nouvelAssignment.rendu = a.rendu;
       nouvelAssignment.eleve = a.eleve;
       nouvelAssignment.matiere = a.matiere;
-      switch (a.matiere) {
-        case "Base de données":
-          nouvelAssignment.professeur = "M. Mopolo";
-          nouvelAssignment.avatar = "../assets/avatars/okComputer.jpg";
-          break;
-        case "Marketing":
-          nouvelAssignment.professeur = "M. Tounsi";
-          nouvelAssignment.avatar = "../assets/avatars/abbeyRoad.jpg";
-          break;
-        case "Comptabilité":
-          nouvelAssignment.professeur = "M. Anigo";
-          nouvelAssignment.avatar = "../assets/avatars/californication.jpg";
-          break;
-        case "Développement WEB":
-          nouvelAssignment.professeur = "M. Buffa";
-          nouvelAssignment.avatar = "../assets/avatars/opera.jpg";
-          break;
-        case "Programmation Avancée":
-          nouvelAssignment.professeur = "M. Lahire";
-          nouvelAssignment.avatar = "../assets/avatars/stadiumArcadium.jpg";
-          break;
-          case "Musique":
-          nouvelAssignment.professeur = "M. Buffa";
-          nouvelAssignment.avatar = "../assets/avatars/supermassive.jpg";
-          break;
+      if(nouvelAssignment.rendu){
+        nouvelAssignment.note = Math.floor(Math.random() * 20);
       }
+      this.setDetails(nouvelAssignment, a.matiere);
 
       appelsVersAddAssignment.push(this.addAssignment(nouvelAssignment));
     });
     return forkJoin(appelsVersAddAssignment);
+  }
+
+  setDetails(assignment:Assignment,data:any){
+    switch (data) {
+      case "Base de données":
+        assignment.professeur = "M. Mopolo";
+        assignment.avatar = "../assets/avatars/okComputer.jpg";
+        break;
+      case "Marketing":
+        assignment.professeur = "M. Tounsi";
+        assignment.avatar = "../assets/avatars/abbeyRoad.jpg";
+        break;
+      case "Comptabilité":
+        assignment.professeur = "M. Anigo";
+        assignment.avatar = "../assets/avatars/californication.jpg";
+        break;
+      case "Développement WEB":
+        assignment.professeur = "M. Buffa";
+        assignment.avatar = "../assets/avatars/opera.jpg";
+        break;
+      case "Programmation Avancée":
+        assignment.professeur = "M. Lahire";
+        assignment.avatar = "../assets/avatars/stadiumArcadium.jpg";
+        break;
+      case "Musique":
+        assignment.professeur = "M. Buffa";
+        assignment.avatar = "../assets/avatars/supermassive.jpg";
+        break;
+    }
   }
 
 }

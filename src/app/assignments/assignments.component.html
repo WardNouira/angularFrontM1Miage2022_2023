@@ -27,7 +27,11 @@
     </ng-container>
     <ng-container matColumnDef="dateDeRendu">
       <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Tri par date de rendu"> Date de rendu </th>
-      <td mat-cell *matCellDef="let assignment"> <span *ngIf="assignment.rendu">{{assignment.dateDeRendu | date}} <span *ngIf="!assignment.rendu"></span></span></td>
+      <td mat-cell *matCellDef="let assignment"> <span >{{assignment.dateDeRendu | date}}</span></td>
+    </ng-container>
+    <ng-container matColumnDef="note">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Note </th>
+      <td mat-cell *matCellDef="let assignment"> {{assignment.note | note}} </td>
     </ng-container>
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef > Actions </th>

@@ -8,4 +8,5 @@ export class Assignment {
   matiere!: string;
   eleve!: string;
   avatar!: string;
+  note!: number;
 }

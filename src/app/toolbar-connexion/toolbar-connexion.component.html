@@ -1,7 +1,7 @@
 
 <mat-toolbar color="primary" class="toolbar">
-  <span>Truc</span>
-  <div [formGroup]="connexionForm" class="containerLogIn">
+  <span>Application de gestion des devoirs</span>
+  <div [formGroup]="connexionForm" *ngIf="!isLoggedIn" class="containerLogIn">
     <span class="loginInputs">
       <mat-form-field appearance="fill" style="margin-right: 2%">
       <mat-label>Pseudo</mat-label>
@@ -23,5 +23,10 @@
       <button mat-raised-button (click)="onSubmitInscription()">Inscription</button>
     </span>
 
+  </div>
+  <div class="containerLogIn" *ngIf="isLoggedIn">
+    <span>Bienvenue {{username}}, </span>
+    <span *ngIf="isAdmin"> vous avez les droits administrateur</span>
+    <span *ngIf="!isAdmin"> vous n'avez pas les droits administrateur</span>
   </div>
 </mat-toolbar>

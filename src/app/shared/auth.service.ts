@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {Observable, tap} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -11,12 +11,21 @@ export class AuthService {
   urlInscription = "http://localhost:8010/api/inscription";
   loggedIn = false;
   isUserAdmin = false;
+  username: string;
 
   // logIn(){
   //   this.loggedIn = true;
   // }
   logIn(pseudo:any, motDePasse:any): Observable<any>{
-    return this.http.post(this.urlConnexion, {pseudo: pseudo, motDePasse: motDePasse});
+    return this.http.post(this.urlConnexion, {pseudo: pseudo, motDePasse: motDePasse}).pipe(
+      tap((res:any)=>{
+        if(res){
+          localStorage.setItem('token', res.token);
+          this.loggedIn = true;
+          this.username = res.pseudo;
+        }
+      }
+    ));
   }
   signUp(pseudo:any, motDePasse:any, isAdmin:any): Observable<any>{
     console.log("pseudo: " + pseudo + " motDePasse: " + motDePasse + " isAdmin: " + isAdmin);
@@ -26,13 +35,7 @@ export class AuthService {
   logOut(){
     this.loggedIn = false;
   }
-  //
-  // isAdmin(){
-  //   const isUserAdmin = new Promise(
-  //     (resolve, reject) => {
-  //       resolve(this.loggedIn)
-  //     }
-  //   )
-  //   return isUserAdmin;
-  // }
+  getToken(){
+    return localStorage.getItem('token');
+  }
 }

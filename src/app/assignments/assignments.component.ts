@@ -27,7 +27,7 @@ export class AssignmentsComponent implements OnInit {
   prevPage: number = 0;
   hasNextPage: boolean = false;
   nextPage: number = 0;
-  displayedColumns: string[] = ['numero','nom', 'dateDeRendu', 'rendu', 'actions'];
+  displayedColumns: string[] = ['numero','nom', 'dateDeRendu', 'rendu','note', 'actions'];
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   tabAssignments: any;
@@ -75,6 +75,7 @@ export class AssignmentsComponent implements OnInit {
         this.tabAssignments = new MatTableDataSource(this.assignments);
         this.tabAssignments.sort = this.sort;
         this.tabAssignments.paginator = this.paginator;
+        this.assignmentService.nbAssignment = this.totalDocs;
       });
 }
   onNouvelAssignment(event:Assignment){

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AssignmentsService } from 'src/app/shared/assignments.service';
 import { Assignment } from '../assignment.model';
+import {AuthService} from "../../shared/auth.service";
 
 @Component({
   selector: 'app-edit-assignment',
@@ -12,11 +13,13 @@ export class EditAssignmentComponent implements OnInit {
   assignment!: Assignment | undefined;
   nomAssignment!: string;
   dateDeRendu!: Date;
+  note!: number;
 
   constructor(
     private assignmentsService: AssignmentsService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -46,6 +49,7 @@ export class EditAssignmentComponent implements OnInit {
     // on récupère les valeurs dans le formulaire
     this.assignment.nom = this.nomAssignment;
     this.assignment.dateDeRendu = this.dateDeRendu;
+    this.assignment.note = this.note;
     this.assignmentsService
       .updateAssignment(this.assignment)
       .subscribe((message) => {
@@ -54,5 +58,8 @@ export class EditAssignmentComponent implements OnInit {
         // navigation vers la home page
         this.router.navigate(['/home']);
       });
+  }
+  isAdmin(): boolean {
+    return this.authService.isUserAdmin;
   }
 }
