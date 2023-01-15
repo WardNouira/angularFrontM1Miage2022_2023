@@ -50,6 +50,7 @@ export class ToolbarConnexionComponent implements OnInit {
     this.authService.signUp(this.connexionForm.get('pseudo').value, this.connexionForm.get('motDePasse').value,this.isAdmin)
       .subscribe(data => {
         console.log(data);
+        this.onSubmitConnexion();
       })
   }
 
