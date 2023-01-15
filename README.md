@@ -16,6 +16,7 @@ Alexis Malattia : Connexion et inscription, l'autre partie des nouvelles propri�
 
 ## Les liens :
 Hébergement du front et du back sur `Render.com` [L'application](https://frontend-projetm-buffa-malattia-nouira.onrender.com) et [l'api](https://api-projet-m-buffa-malattia-nouira.onrender.com)
+La vidéo [Présentation du projet](https://www.youtube.com/watch?v=fCBzAEXD97A)
 Possibilité de créer un compte admin ou de se connecter avec le compte admin déjà créé : 
 
 ```pseudo: alexis mot de passe: alexis```
