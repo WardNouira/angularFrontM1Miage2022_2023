@@ -20,5 +20,5 @@ Possibilité de créer un compte admin ou de se connecter avec le compte admin d
 
 ```pseudo: alexis mot de passe: alexis```
 
-#IMPORTANT :
+# IMPORTANT :
 Il semblerait que l'api ne soit pas accessible par moment sur Render, si l'application d'affiche aucun assignment et que la connexion et création de compte ne font rien, il s'agit d'un problème provenant de render.
