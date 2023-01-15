@@ -1,27 +1,21 @@
-# AngularTest
+# Projet front end Nouira/Malattia
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.2.
+Ceci est le répertoire du front end du mini projet proposé par M.Buffa
 
-## Development server
+## Travail réalisé 
+ * Login et inscription grâce à l'api avec des mots de passe encryptés avec bcrypt (réalisé à l'aide du code d'un précédent projet personnel et en suivant le tutoriel de Open Classrooms) Ce code en node js a été partagé au groupe de Pierre Bihannic
+ * Json web token implémenté en back end uniquement
+ * Ajout de propriétés au modèle des assignments (le nom des élèves, de la matière, du prof, un avatar pour la matière, la possibilité de noter un devoir etc...)
+ * Amélioration des affichages (Pagination, colonnes triables)
+ * Utilisation de pipe custom pour le statut du rendu et pour la note
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Contributions :
+Ward Nouira : Pagination, colonnes triables, affichage dans une table avec un dataset. Une partie des nouvelles propriétés sur le modèle des assignments
 
-## Code scaffolding
+Alexis Malattia : Connexion et inscription, l'autre partie des nouvelles propriété sur le modèle des assignments, les pipes customs.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Les liens :
+Hébergement du front et du back sur `Render.com` [L'application](https://frontend-projetm-buffa-malattia-nouira.onrender.com) et [l'api](https://api-projet-m-buffa-malattia-nouira.onrender.com)
+Possibilité de créer un compte admin ou de se connecter avec le compte admin déjà créé : 
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```pseudo: alexis mot de passe: alexis```
